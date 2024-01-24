@@ -8,7 +8,7 @@ public class Gorila extends Animal {
 	}
 	
 	public void Som() {
-		System.out.println("O gorila " + nome + "está grunhindo" + "\n");
+		System.out.println("O gorila " + nome + " está grunhindo " + "\n");
 	}
 	
 	public double calcularIMC() {

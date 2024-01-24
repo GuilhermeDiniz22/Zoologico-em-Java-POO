@@ -28,6 +28,12 @@ public class Zoo {
 		}
 	}
 	
+	public void alimentarAnimais() {
+		for (Animal animal : animais) {
+			animal.peso+=1;
+		}
+	}
+	
 	public void adicionarFuncionario(Funcionario funcionario) {
 		this.funcionarios.add(funcionario);
 	}

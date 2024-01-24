@@ -6,8 +6,8 @@ public class Veterinario extends Funcionario {
 	
 	private Animal animal; //injeção da classe animal que serve de base para leao e gorila
 	
-	public Veterinario(String nome, String sobrenome, String rg, String registroCRM) {
-		super(nome, sobrenome, rg);
+	public Veterinario(String nome, String sobrenome, String rg, String cargo, String registroCRM) {
+		super(nome, sobrenome, rg, cargo);
 		this.registroCRM = registroCRM;
 	}
 

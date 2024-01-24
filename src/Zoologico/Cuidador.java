@@ -4,8 +4,10 @@ public class Cuidador extends Funcionario {
 	
 	private Animal animal;
 	
-	public Cuidador(String nome, String sobrenome, String rg) {
-		super(nome, sobrenome, rg);
+	private Zoo zoo;
+	
+	public Cuidador(String nome, String sobrenome, String rg, String cargo) {
+		super(nome, sobrenome, rg, cargo);
 	}
 	
 	public void alimentar(Animal animal) {
@@ -23,8 +25,8 @@ public class Cuidador extends Funcionario {
 		animal.peso -= 1;
 	}
 	
-	public void limparJaula(Animal animal) {
-		System.out.println("O cuidador " + this.nome + " limpou a jaula do animal " + animal.nome + "\n");
+	public void limparJaulas() {
+		System.out.println("O cuidadores limparam as jaulas dos animais " + "\n");
 	}
 	
 	public void mudarHabitat(Animal animal, String novoHabitat) {
