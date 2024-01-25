@@ -1,6 +1,7 @@
 package Zoologico;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -31,12 +32,29 @@ public class Zoo {
 	}
 	
 	public void adicionarAnimal(Animal animal) {
-		this.animais.add(animal);
+	    try {
+	        if (this.animais != null) {
+	            this.animais.add(animal);
+	        } else {
+	            System.out.println("Erro ao adicionar animal: objeto animais não inicializado.");
+	        }
+	    } catch (NullPointerException e) {
+	        System.out.println("Erro ao adicionar animal: ocorreu uma NullPointerException.");
+	    }
 	}
-	
+
 	public void removerAnimal(Animal animal) {
-		this.animais.remove(animal);
+	    try {
+	        if (this.animais != null) {
+	            this.animais.remove(animal);
+	        } else {
+	            System.out.println("Erro ao remover animal: objeto animais não inicializado.");
+	        }
+	    } catch (NullPointerException e) {
+	        System.out.println("Erro ao remover animal: ocorreu uma NullPointerException.");
+	    }
 	}
+
 	
 	public void listarAnimais() {
 		if(this.animais.size() == 0) {
@@ -48,18 +66,40 @@ public class Zoo {
 	}
 	
 	public void alimentarAnimais() {
-		for (Animal animal : animais) {
-			animal.peso+=1;
+		try {
+			
+			if(animais.size() == 0) {
+				System.out.println("Não há animais no zoo.\n");
+			}
+			else {
+				for(Animal animal : animais) {	
+					animal.peso+=1;
+				}
+				System.out.println("Os animais foram alimentados e engordaram.\n");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("Algo deu errado " + e.getMessage());
 		}
-	}
+	} 
+	
 	
 	public void adicionarFuncionario(Funcionario funcionario) {
-		this.funcionarios.add(funcionario);
+	    try {
+	        this.funcionarios.add(funcionario);
+	    } catch (NullPointerException e) {
+	        System.out.println("Erro ao adicionar funcionário: funcionario não inicializado.");
+	    }
 	}
-	
+
 	public void removerFuncionario(Funcionario funcionario) {
-		this.funcionarios.remove(funcionario);
+	    try {
+	        this.funcionarios.remove(funcionario);
+	    } catch (NullPointerException e) {
+	        System.out.println("Erro ao remover funcionário: funcionario não inicializado.");
+	    }
 	}
+
 	
 	public void listarFuncionarios() {
 		if(this.funcionarios.size() == 0) {
@@ -79,45 +119,21 @@ public class Zoo {
 		}
 	}
 	
-	public int quantidadeDeLeoes() {
-		int quantidade = 0;
-		for (Animal animal : animais) {
-			if (animal instanceof Leao) {
-				quantidade++;
+	public void exercitarAnimais() {
+		try {
+			if(animais.size() == 0) {
+				System.out.println("Nenhum animal para exercitar.\n");
+			}else {
+				for(Animal animal: animais) {
+					animal.peso-=2;
+					System.out.println("O Animal: " + animal.nome + "perdeu calorias se exercitando. \n");
+				}
 			}
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
 		}
-		return quantidade;
 	}
 	
-	public int quantidadeDeGorilas() {
-		int quantidade = 0;
-		for (Animal animal : animais) {
-			if (animal instanceof Gorila) {
-				quantidade++;
-			}
-		}
-		return quantidade;
-	}
-	
-	public int quantidadeDeVeterinarios() {
-		int quantidade = 0;
-		for (Funcionario funcionario : funcionarios) {
-			if (funcionario instanceof Veterinario) {
-				quantidade++;
-			}
-		}
-		return quantidade;
-	}
-	
-	public int quantidadeDeCuidadores() {
-		int quantidade = 0;
-		for (Funcionario funcionario : funcionarios) {
-			if (funcionario instanceof Cuidador) {
-				quantidade++;
-			}
-		}
-		return quantidade;
-	}
 	
 	public int quantidadeDeAnimais() {
 		return animais.size();
@@ -127,19 +143,21 @@ public class Zoo {
 		return funcionarios.size();
 	}
 	
-	public List<Animal> get10Animais(){
-		return animais.stream().limit(10).collect(Collectors.toList());
-	}
 	
 	public void animaisMaisJovens(int idade) {
-		animais.stream().filter(animal -> animal.idade < idade)
-		.forEach(animal -> System.out.println(animal));
+		try {
+			animais.stream().filter(animal -> animal.idade < idade)
+			.forEach(animal -> System.out.println(animal));
+		}catch (NullPointerException e) {
+			System.out.println("Idade inválida.");
+		}
 	}
 	
 	public void animaisDoentes() {
 		animais.stream().filter(animal -> animal.saudavel == false)
 		.forEach(animal -> System.out.println(animal));
 	}
+	
 	
 	public void escolhaConsole() {
 		System.out.println(" [1] Listar todos os animais ");
@@ -151,6 +169,7 @@ public class Zoo {
 		System.out.println(" [7] Adicionar Gorila ");
 		System.out.println(" [8] Contratar Cuidador ");
 		System.out.println(" [9] Contratar Veterinario ");
+		System.out.println(" [10] Exercitar animais ");
 		int escolha = scan.nextInt();
 		
 		switch(escolha) {
@@ -166,6 +185,7 @@ public class Zoo {
 				this.alimentarAnimais();
 				escolhaConsole();
 				break;
+				
 			case 4:
 				this.somAnimais();;
 				escolhaConsole();
@@ -193,6 +213,10 @@ public class Zoo {
 				Veterinario novoVet = veterinario.contratarVeterinario();
                 this.adicionarFuncionario(novoVet);
                 escolhaConsole();
+				break;
+			case 10:
+				this.exercitarAnimais();
+				escolhaConsole();
 				break;
 			default:
 				System.out.println(" Até a próxima ");

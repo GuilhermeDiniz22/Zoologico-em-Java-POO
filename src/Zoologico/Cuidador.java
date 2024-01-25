@@ -1,5 +1,6 @@
 package Zoologico;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Cuidador extends Funcionario {
@@ -15,23 +16,9 @@ public class Cuidador extends Funcionario {
 		this.scan = new Scanner(System.in);
 	}
 	
-	public void alimentar(Animal animal) {
-		if(animal.peso > 200) {
-			animal.saudavel = false;
-			System.out.println("É necessário curar o animal, com um veterinário ou fazendo exercisios." + "\n");
-		}
-		
-		System.out.println("O cuidador " + this.nome + " alimentou o animal " + animal.nome + "\n");
-		animal.peso += 1;
-	}
-	
-	public void exercitarAnimal(Animal animal) {
-		System.out.println("O cuidador " + this.nome + " exercitou o animal " + animal.nome + "\n");
-		animal.peso -= 1;
-	}
-	
 	public void limparJaulas() {
 		System.out.println("O cuidadores limparam as jaulas dos animais " + "\n");
+		zoo.
 	}
 	
 	public void mudarHabitat(Animal animal, String novoHabitat) {
