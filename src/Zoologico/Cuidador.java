@@ -1,7 +1,5 @@
 package Zoologico;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Cuidador extends Funcionario {
@@ -36,12 +34,14 @@ public class Cuidador extends Funcionario {
         String rg = scan.nextLine();
         
         var novoCuidador = new Cuidador(nome, sobrenome, rg, new Zoo());
+        //o metodo contratarcuidador tb recebe a classe zoo
         return novoCuidador;
     }
 	
 	public void exercitarAnimais() {
 		try {
-			var cuidador = zoo.getCuidador();
+			var cuidador = zoo.getCuidador(); 
+			// esse metodo recebe uma instancia da classe cuidador (da classe zoo) para printar o nome do mesmo.
 			if(cuidador == null) {
 				System.out.println("Nenhum cuidador para exercitar o animal.\n");
 			}else {
@@ -51,7 +51,8 @@ public class Cuidador extends Funcionario {
 				}else {
 					for(Animal animal: animais) {
 						animal.peso-=2;
-						System.out.println("O Animal: " + animal.nome + " perdeu calorias se exercitando. \n");
+						System.out.println("O Animal: " + animal.nome + " perdeu calorias se exercitando " 
+						+ "Com ajuda do cuidador:" + cuidador.nome + "\n");
 					}
 				}
 			}

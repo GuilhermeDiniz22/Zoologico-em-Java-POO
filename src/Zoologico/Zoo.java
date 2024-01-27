@@ -3,9 +3,7 @@ package Zoologico;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class Zoo {
 	
@@ -27,7 +25,8 @@ public class Zoo {
 		this.scan = new Scanner(System.in);
 		this.leao = new Leao(null, 0, 0, 0, null, null, false);
 		this.gorila = new Gorila(null, 0, 0, 0, null, null, false);
-		this.cuidador = new Cuidador(null, null, null, this);
+		this.cuidador = new Cuidador(null, null, null, this); 
+		//a classe cuidador instancia o objeto zoolico na hora de sua propria instanciacao
 		this.veterinario = new Veterinario(null, null, null, null);
 	}
 	

@@ -1,7 +1,5 @@
 package Zoologico;
 
-import java.util.Scanner;
-
 public abstract class Animal {
 	protected String nome;
 	protected int idade;
@@ -10,7 +8,6 @@ public abstract class Animal {
 	protected String raca;
 	protected String habitat;
 	protected boolean saudavel;
-	private Scanner scan;
 
 
 	public Animal(String nome, int idade, double peso, double altura, String raca, String habitat, boolean saudavel) {

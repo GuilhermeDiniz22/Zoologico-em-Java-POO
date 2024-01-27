@@ -22,7 +22,7 @@ public class Veterinario extends Funcionario {
 	
 	public void curar(Animal animal) {
 		System.out.println("O veterinario " + this.nome + 
-				"com registro de número: " +  this.getRegistroCRM() + "tratou do animal: " 
+				"com registro de número: " +  this.getRegistroCRM() + " tratou do animal: " 
 				+ animal.nome );
 		animal.saudavel = true;
 	}
