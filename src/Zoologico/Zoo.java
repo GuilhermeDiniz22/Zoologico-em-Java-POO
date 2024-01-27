@@ -27,7 +27,7 @@ public class Zoo {
 		this.scan = new Scanner(System.in);
 		this.leao = new Leao(null, 0, 0, 0, null, null, false);
 		this.gorila = new Gorila(null, 0, 0, 0, null, null, false);
-		this.cuidador = new Cuidador(null, null, null);
+		this.cuidador = new Cuidador(null, null, null, this);
 		this.veterinario = new Veterinario(null, null, null, null);
 	}
 	
@@ -99,7 +99,15 @@ public class Zoo {
 	        System.out.println("Erro ao remover funcionário: funcionario não inicializado.");
 	    }
 	}
-
+	
+	public Cuidador getCuidador() {
+		for (Funcionario funcionario : funcionarios) {
+			if (funcionario instanceof Cuidador) {
+				return (Cuidador) funcionario;
+			}
+		}
+		return null;
+	}
 	
 	public void listarFuncionarios() {
 		if(this.funcionarios.size() == 0) {
@@ -116,21 +124,6 @@ public class Zoo {
 		}
 		for (Animal animal : animais) {
 			animal.Som();
-		}
-	}
-	
-	public void exercitarAnimais() {
-		try {
-			if(animais.size() == 0) {
-				System.out.println("Nenhum animal para exercitar.\n");
-			}else {
-				for(Animal animal: animais) {
-					animal.peso-=2;
-					System.out.println("O Animal: " + animal.nome + "perdeu calorias se exercitando. \n");
-				}
-			}
-		}catch(Exception e) {
-			System.out.println(e.getMessage());
 		}
 	}
 	
@@ -158,6 +151,9 @@ public class Zoo {
 		.forEach(animal -> System.out.println(animal));
 	}
 	
+	public List<Animal> getList() {
+		return Collections.unmodifiableList(animais);
+	}
 	
 	public void escolhaConsole() {
 		System.out.println(" [1] Listar todos os animais ");
@@ -215,7 +211,7 @@ public class Zoo {
                 escolhaConsole();
 				break;
 			case 10:
-				this.exercitarAnimais();
+				cuidador.exercitarAnimais();
 				escolhaConsole();
 				break;
 			default:
